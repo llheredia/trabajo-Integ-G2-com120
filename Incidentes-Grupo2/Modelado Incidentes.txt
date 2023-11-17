@@ -1,0 +1,150 @@
+
+// Código con Modelado de Clases:
+
+//utilizando Lombok para generar getters y setters:
+
+//java
+// Clase Cliente
+public class Cliente {
+   private String cuit;
+   private String razonSocial;
+   private List<Servicio> servicios;
+
+   public void addServicio(Servicio servicio) {
+      servicios.add(servicio);
+   }
+
+   public void removeServicio(Servicio servicio) {
+      servicios.remove(servicio);
+   }
+}
+
+// Clase Servicio
+public class Servicio {
+   private long idServicio;
+   private String descripcion;
+   private Cliente cliente;
+   private List<Problema> problemas;
+
+   public void addProblema(Problema problema) {
+      problemas.add(problema);
+   }
+
+   public void removeProblema(Problema problema) {
+      problemas.remove(problema);
+   }
+   return List<Problema>;
+}
+
+// Clase Problema
+
+public class Problema {
+   private long idProblema;
+   private String descripcion;
+   private List<TipoProblema> tiposProblema;
+   private List<Especialidad> especialidades;
+
+   public void addTipoProblema(TipoProblema tipoProblema) {
+      tiposProblema.add(tipoProblema);
+   }
+
+   public void removeTipoProblema(TipoProblema tipoProblema) {
+      tiposProblema.remove(tipoProblema);
+   }
+
+   public void addEspecialidad(Especialidad especialidad) {
+      especialidades.add(especialidad);
+   }
+
+   public void removeEspecialidad(Especialidad especialidad) {
+      especialidades.remove(especialidad);
+   }
+}
+
+// Clase TipoProblema
+
+public class TipoProblema {
+   private long idTipoProblema;
+   private String descripcion;
+}
+
+// Clase Especialidad
+
+public class Especialidad {
+   private long idEspecialidad;
+   private String descripcion;
+}
+
+// Clase Tecnico
+
+public class Tecnico {
+   private long idTecnico;
+   private String nombre;
+   private List<Especialidad> especialidades;
+   private String medioNotificacion;
+
+   public void addEspecialidad(Especialidad especialidad) {
+      especialidades.add(especialidad);
+   }
+
+   public void removeEspecialidad(Especialidad especialidad) {
+      especialidades.remove(especialidad);
+   }
+   return List<Problema>;
+}
+
+// Clase Incidente
+
+public class Incidente {
+   private long idIncidente;
+   private String descripcion;
+   private Date fechaReporte;
+   private Date fechaEstimada;
+   private String estado;
+   private Tecnico tecnico;
+   private Cliente cliente;
+   private Servicio servicio;
+   private TipoProblema tipoProblema;
+   private Problema problema;
+}
+
+// Clase RRHH
+public class RRHH {
+   public List<Incidente> getIncidentesAsignados(Tecnico tecnico) {
+      // Obtener los incidentes asignados al técnico y su estado
+      // Retornar la lista de incidentes asignados
+   }
+}
+
+// Clase Operador
+public class Operador {
+   public List<Tecnico> getTecnicosDisponibles(Servicio servicio, TipoProblema tipoProblema, Problema problema) {
+      // Obtener los técnicos disponibles para resolver el problema del cliente
+      // Retornar la lista de técnicos disponibles
+   }
+
+   public void asignarTecnicoIncidente(Incidente incidente, Tecnico tecnico) {
+      incidente.setTecnico(tecnico);
+      // Enviar notificación al técnico informándole del nuevo incidente
+   }
+}
+
+// Clase EmailNotificacion (implementación concreta para notificación por Email)
+public class EmailNotificacion implements Notificacion {
+   public void enviarNotificacion(String mensaje) {
+      // Implementación para enviar notificación por Email
+   }
+}
+
+// Clase WhatsAppNotificacion (implementación concreta para notificación por WhatsApp)
+public class WhatsAppNotificacion implements Notificacion {
+   public void enviarNotificacion(String mensaje) {
+      // Implementación para enviar notificación por WhatsApp
+   }
+}
+
+// Interfaz Notificacion
+public interface Notificacion {
+   void enviarNotificacion(String mensaje);
+}
+
